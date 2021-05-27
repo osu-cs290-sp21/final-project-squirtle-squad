@@ -42,7 +42,7 @@ function csvJSON(csv){
             obj[headers[j]] = currentline[j];
         }
         if(i < rawSpritesTable.length+1) {
-            var sprite = rawSpritesTable[i-1];
+            var sprite = rawSpritesTable[i-1].slice(0,-1);
             obj.sprite = sprite.split(" ")[2];
         }
         

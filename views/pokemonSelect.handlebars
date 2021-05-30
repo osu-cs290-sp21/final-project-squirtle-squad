@@ -1,0 +1,38 @@
+<main class="pokemon-container">
+      <section class="pokemon">
+        <div class="pokemon-sprite-front-container">
+          <img class="sprite pokemon-sprite-front-img" src="/frontSprites/{{pokedex_number}}.png">
+        </div>
+        <div class="pokemon-text">
+          <p class="name">
+            Name: {{name}}
+          </p>
+          <p class="stat hp">
+            HP: {{hp}}
+          </p>
+          <p class="stat atk">
+            ATK: {{attack}}
+          </p>
+          <p class="stat hp">
+            DEF: {{defense}}
+          </p>
+          <p class="stat atk">
+            SP_ATK: {{sp_attack}}
+          </p>
+          <p class="stat hp">
+            SP_DEF: {{sp_defense}}
+          </p>
+          <p class="stat atk">
+            SPD: {{speed}}
+          </p>
+          <p class="other-stats">
+            Other stats:
+            <ol class="other-stats-list">
+                <li class="first-stat">Weight: {{weight_kg}}kg</li>
+                <li class="second-stat">Japanese Name: {{japanese_name}}</li>
+                <li class="third-stat">Generation: {{generation}}</li>
+            </ol>
+          </p>
+        </div>
+      </section>
+    </main>

@@ -26,6 +26,12 @@ a {
 
 .navitem {
   display: inline-block;
+  margin-right: 20px;
+  padding: 5px;
+}
+
+.navlink:hover {
+  background-color: darkgray
 }
 
 .navitem.create {
@@ -44,4 +50,9 @@ a {
 
 .pokemon-text {
   color: #e9866f;
+}
+
+.sprite {
+  width: 30%;
+  height: 30%;
 }

@@ -5,7 +5,7 @@ from PIL import Image
 
 spriteSize = 64
 
-spriteSheetPath = "./resources/gen2.png"
+spriteSheetPath = "./resources/gen1_back.png"
 spriteSheet = Image.open(spriteSheetPath)
 (x,y) = spriteSheet.size
 pokemonWide = 16
@@ -26,4 +26,4 @@ for i in range(int(y/spriteSize)):
 
         targetDir = "./resources/sprites/"
         #DO THE FILE SAVING HERE
-        sprite.save(targetDir + str(i*pokemonWide+j+1+151) + ".png")
+        sprite.save(targetDir + str(i*pokemonWide+j+1+0) + ".png")

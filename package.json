@@ -1,7 +1,26 @@
 {
+  "name": "final-project-squirtle-squad",
+  "version": "1.0.0",
+  "description": "Final Project",
+  "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1",
-    "express-handlebars": "^5.3.2",
-    "handlebars": "^4.7.7"
-  }
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "handlebars views/partials/pokemonInfoCard.handlebars -f public/createCardTemplate.js",
+    "prestart": "npm run build",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osu-cs290-sp21/final-project-squirtle-squad.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osu-cs290-sp21/final-project-squirtle-squad/issues"
+  },
+  "homepage": "https://github.com/osu-cs290-sp21/final-project-squirtle-squad#readme"
 }

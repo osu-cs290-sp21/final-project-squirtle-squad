@@ -35,7 +35,7 @@ app.get('/pokemon/:id', function (req, res, next) {
 });
 
 app.get('/battle', function (req, res, next) {
-
+	res.status(200).render('pokemonArena')
 });
 
 app.get('*', function (req, res, next) {

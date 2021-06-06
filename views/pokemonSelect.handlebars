@@ -1,11 +1,14 @@
+<main class="pokemon-container">
 {{#if displayAll}}
   {{#each data}}
-    <main class="pokemon-container">
-      {{> pokemonInfoCard}}
-    </main>
+      {{#if customPokemon}}
+        {{> showCustomPokemonCard}}
+      {{else}}
+        {{> pokemonInfoCard}}
+      {{/if}}
   {{/each}}
 {{else}}
-  <main class="pokemon-container">
     {{> pokemonInfoCard}}
-  </main>
+    {{> showCustomPokemonCard}}
 {{/if}}
+</main>

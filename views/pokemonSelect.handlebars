@@ -12,3 +12,57 @@
     {{> showCustomPokemonCard}}
 {{/if}}
 </main>
+<div id="modal-backdrop" class="hidden"></div>
+<div id="create-pokemon-modal" class="hidden">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h3>Create a Pokemon</h3>
+      <button type="button" id="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="input-element">
+        <label for="poke-name-input">Pokemon Name</label>
+        <input type="text" id="poke-name-input">
+      </div>
+      <div class="input-element">
+        <label for="poke-Type-input">Pokemon Type</label>
+        <select name="type-select" id="poke-type-input">
+          <option value="normal" id="defaultOption">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="electric">Electric</option>
+          <option value="grass">Grass</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+          <option value="dark">Dark</option>
+          <option value="steel">Steel</option>
+          <option value="fairy">Fairy</option>
+        </select>
+      </div>
+      <div class="input-element">
+        <label for="poke-height-input">Pokemon Height (meters)</label>
+        <input type="text" id="poke-height-input">
+      </div>
+      <div class="input-element">
+        <label for="poke-frontSprite-input">Front Sprite URL</label>
+        <input type="text" id="poke-frontSprite-input">
+      </div>
+      <div class="input-element">
+        <label for="poke-backSprite-input">Back Sprite URL</label>
+        <input type="text" id="poke-backSprite-input">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="modal-cancel-button">Cancel</button>
+      <button type="button" id="modal-accept-button">Create Pokemon</button>
+    </div>
+  </div>
+</div>

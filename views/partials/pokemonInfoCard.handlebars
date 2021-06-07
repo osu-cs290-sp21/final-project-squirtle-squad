@@ -1,10 +1,17 @@
       <section class="pokemon flexItem">
         <div class="pokemon-sprite-front-container">
-          <img class="sprite pokemon-sprite-front-img" src="/frontSprites/{{pokedex_number}}.png">
+          {{#if front-sprite}}
+            <img class="sprite pokemon-sprite-front-img" src="{{front-sprite}}">
+          {{else}}
+            <img class="sprite pokemon-sprite-front-img" src="/frontSprites/{{pokedex_number}}.png">
+          {{/if}}
         </div>
         <div class="pokemon-text">
           <p class="name">
             Name: {{name}}
+          </p>
+          <p class="id">
+            ID: {{pokedex_number}}
           </p>
           <p class="stat hp">
             HP: {{hp}}

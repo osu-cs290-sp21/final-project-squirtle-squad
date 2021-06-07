@@ -1,98 +1,10 @@
 <body>
 		<div class="battle-pokemon">
 		<main class="battle-container">
-			<div class="trainer" id="computer">
-				<div class="battle-box">
-					<h3>
-						ZQUIRTLE
-					</h3>
-					<div class="health-bar">
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						 
-						</div>
-					</div>
-					<div class="health">
-						100/100
-					</div>
-				
-				</div>
-				<img src="/frontSprites/112.png" class="sprites oponent">
-			</div>
-			
-			<div class="trainer" id="player">
-				<img src="/backSprites/41.png" class="sprites">
-				<div class="battle-box">
-					<h3>
-						ROSASLOTH
-					</h3>
-					<div class="health-bar">
-						<div class="green">
-							
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-						<div class="green">
-						
-						</div>
-					</div>
-					<div class="health">
-						100/100
-					</div>
-				
-				</div>
-			</div>
-			
-		</main>
-		
+			{{>trainerOppo}}
+
+			{{>trainerUser}}
+
 		<div id="pokeswap">
 				<div class="party">
 					Arceus
@@ -116,10 +28,12 @@
 		</div>
 		<div>
 			<div id="moveset">
-				<p class="move">Razor Leaf </p>
-				<p class="move">Toxic </p>
-				<p class="move">Slash </p>
-				<p class="move">Yawn </p>
+				{{#each movesU}}
+					{{>moveContainer}}
+				{{/each}}
+				{{#each movesO}}
+					{{>moveContainerHidden}}
+				{{/each}}
 			</div>
 		</div>
 		<div id="explain-text">
@@ -128,7 +42,7 @@
 			</h3>
 			<ul>
 				<li>
-					Your pokemon and your oponents pokemon have been chosen randomly.
+					Your pokemon and your opponents pokemon have been chosen randomly.
 				</li>
 				<li>
 					Choose a move from the bottom row.
@@ -138,4 +52,17 @@
 				</li>
 			</ul>
 		</div>
+		<div class="pokemon-container">
+			{{#with userPoke}}
+				{{> pokemonInfoCard}}
+			{{/with}}
+
+			{{#with oppoPoke}}
+				{{> pokemonInfoCard}}
+			{{/with}}
+		</div>
+
+	</main>
+</div>
+
 	</body>

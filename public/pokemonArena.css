@@ -3,6 +3,7 @@
   width: 30%;
   height: 90%;
   max-width: 300px;
+  z-index: 5;
 
     image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
     image-rendering: -moz-crisp-edges;          /* Firefox                        */
@@ -79,7 +80,7 @@ h3, p, div {
 	display: flex;
 	justify-content: space-around;
 	width: 1100px;
-	height: 70px;
+	height: 200px;
 	position: relative;
 	left: 150px;
 }
@@ -87,8 +88,8 @@ h3, p, div {
 .move {
 	border: 2px solid Black;
 	width: 15%;
-	height: 50%;
-	padding-top: 10px;
+	height: 22%;
+	padding-top: 15px;
 	display: flex;
 	justify-content: center;
 	margin: 0;
@@ -97,11 +98,17 @@ h3, p, div {
 	margin-top: 20px;
 }
 
+.moveName {
+	margin-top: 0;
+}
+
 .move:hover {
-	height: 55%;
+	height: 80%;
 	margin-top: 17px;
 	padding-top: 13px;
 	box-shadow: 5px 5px;
+	flex-direction: column;
+	padding-left: 10px;
 }
 
 #pokeswap {
@@ -134,4 +141,28 @@ h3, p, div {
 #explain-text {
 	color: white;
 	padding-left: 150px;
+}
+
+.under-pokemon {
+	width: 400px;
+	height: 100px;
+	background: lightGreen;
+	border: 10px solid sandybrown;
+	border-radius: 50%;
+}
+
+#under-opponent {
+	position: absolute;
+	top: 200px;
+	left: 650px;
+}
+
+#under-player {
+	position: absolute;
+	top: 520px;
+	right: 650px;
+}
+
+.hidden {
+	display: none;
 }

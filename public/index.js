@@ -107,12 +107,6 @@ function assignEvents() {
 
     var acceptButton = document.getElementById("modal-accept-button");
     acceptButton.addEventListener("click", createPokemon);
-
-    var clickSearchButton = document.getElementById('navbar-search-button')
-    clickSearchButton.addEventListener('click', searchByClicking)
-
-    var liveSearch = document.getElementById('navbar-search-input')
-    liveSearch.addEventListener('input', searchByClicking)
 }
 
 window.onload = assignEvents;
@@ -125,13 +119,18 @@ function searchByClicking() {
     }
   }
   var searchQuery = document.getElementById('navbar-search-input')
-  document.querySelectorAll('.pokemon-text').forEach(function(searchCard){
-    var cards = searchCard.innerText.toLowerCase();
+  document.querySelectorAll(".ghost").forEach(function(searchCard){
+    var cards = searchCard.innerText.toLowerCase()
+    console.log("Cards: ", cards)
     var match = cards.includes(searchQuery.value.toLowerCase());
     if(!match) {
-      searchCard.parentNode.remove();
+      searchCard.parentNode.parentNode.remove();
     }
   })
 }
 
+var clickSearchButton = document.getElementById('navbar-search-button')
+clickSearchButton.addEventListener('click', searchByClicking)
 
+var liveSearch = document.getElementById('navbar-search-input')
+liveSearch.addEventListener('input', searchByClicking)

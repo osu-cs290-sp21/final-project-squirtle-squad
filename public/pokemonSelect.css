@@ -12,6 +12,10 @@ a {
   color: red;
 }
 
+#create-pokemon-button {
+  color: red;
+}
+
 .site-title {
   margin: 0;
   font-size: 50px;

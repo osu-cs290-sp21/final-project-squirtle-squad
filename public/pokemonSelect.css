@@ -40,7 +40,7 @@ a {
 }
 
 .custom-pokemon-list {
-  height: 70%;
+  max-height: 350px;
   overflow-y: auto;
 }
 

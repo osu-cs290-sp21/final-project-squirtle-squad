@@ -59,7 +59,7 @@ app.post('/pokemon/createPokemon', function (req, res) {
               if (err) {
                 res.status(500).send("Error writing new data.  Try again later.");
               } else {
-                res.status(200).send();
+                res.status(200).send(customPokemon.pokedex_number);
               }
             }
           );
@@ -77,6 +77,11 @@ app.get('/', function (req, res) {
     })
 });
 
+app.get('/pokemon/last', function (req, res) {
+    res.contentType("text");
+    res.status(200).send(JSON.stringify(customPokemonArray[customPokemonArray.length-1]));
+})
+
 app.get('/pokemon/:id', function (req, res, next) {
     requestedPokemonID = req.params.id;
     if(requestedPokemonID < 252 && requestedPokemonID > 0) {
@@ -85,7 +90,7 @@ app.get('/pokemon/:id', function (req, res, next) {
             res.status(200).render('pokemonSelect', {...pokemonArray[requestedPokemonID-1], "customPokemon": customPokemonArray})
         } else {
             res.contentType("text");
-            res.status(200).json(pokemonArray[requestedPokemonID-1]);
+            res.status(200).send(JSON.stringify(pokemonArray[requestedPokemonID-1]));
         }
     } else if(requestedPokemonID > 0 && requestedPokemonID <= 251 + customPokemonArray.length){
         var acceptsHTML = req.accepts("html");
@@ -93,7 +98,7 @@ app.get('/pokemon/:id', function (req, res, next) {
             res.status(200).render('pokemonSelect', {...customPokemonArray[requestedPokemonID-252], "customPokemon": customPokemonArray})
         } else {
             res.contentType("text");
-            res.status(200).json(customPokemonArray[requestedPokemonID-252]);
+            res.status(200).send(JSON.stringify(customPokemonArray[requestedPokemonID-252]));
         }
     } else {
         res.status(404).render("404");

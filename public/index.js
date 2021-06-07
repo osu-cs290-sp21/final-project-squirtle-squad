@@ -38,10 +38,61 @@ function hideModal() {
 
 function createPokemon() {
     //TODO: Sending the pokemon creation post request
+    var pokeName = document.getElementById('poke-name-input').value.trim();
+    var pokeType = document.getElementById('poke-type-input').value;
+    var pokeHeight = document.getElementById('poke-height-input').value.trim();
+    var frontSprite = document.getElementById('poke-frontSprite-input').value.trim();
+    var backSprite = document.getElementById('poke-backSprite-input').value.trim();
 
+    if(!pokeName || !pokeType || !pokeHeight || !frontSprite || !backSprite) {
+        alert("Please populate all of the fields");
+    } else {
+        var req = new XMLHttpRequest();
+        var reqURL = "/pokemon/createPokemon";
+        req.open('POST', reqURL);
 
+        var customPokemonShort = {
+            "name": pokeName,
+            "type": pokeType,
+            "height": pokeHeight,
+            "frontSprite": frontSprite,
+            "backSprite": backSprite
+        }
 
-    hideModal();
+        var reqBody = JSON.stringify(customPokemonShort);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load', function (event) {
+            console.log("HI")
+            if (event.target.status == 200) {
+                var pokeReq = new XMLHttpRequest();
+                pokeReq.open('GET', '/pokemon/last');
+                pokeReq.addEventListener('load', function (eventt) {
+                    if (eventt.target.status == 200) {
+                        console.log("Create Pokemon Succesful, trying to get details on new pokemon")
+                        var res = pokeReq.responseText;
+                        console.log(res)
+                        var pokemonInfoCardTemplate = Handlebars.templates.pokemonInfoCard;
+                        jres = JSON.parse(res);
+                        var newPokemonInfoCardHTML = pokemonInfoCardTemplate(jres);
+                        var pokemonContainer = document.getElementsByClassName("pokemon-container")[0];
+                        pokemonContainer.insertAdjacentHTML('beforeend', newPokemonInfoCardHTML);
+
+                        var customList = document.getElementsByClassName('custom-pokemon-list')[0];
+                        customList.insertAdjacentHTML('beforeend', "<li><a href='/pokemon/" + res.pokedex_number + "'>" + jres.name + "</a>")
+                    } else {
+                        alert("Failed to get new pokemon. Refresh Page.\n error:\n" + event.target.response)
+                    }
+                });
+                pokeReq.send();
+            } else {
+                alert("Failed to create pokemon. Try Again.\n error:\n" + event.target.response)
+            }
+        })
+
+        req.send(reqBody);
+
+        hideModal();
+    }
 }
 
 

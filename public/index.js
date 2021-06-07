@@ -138,6 +138,9 @@ function createPokemon() {
         req.addEventListener('load', function (event) {
             console.log("HI")
             if (event.target.status == 200) {
+                if(document.getElementsByClassName('battle-container')) {
+                    return;
+                }
                 var pokeReq = new XMLHttpRequest();
                 pokeReq.open('GET', '/pokemon/last');
                 pokeReq.addEventListener('load', function (eventt) {

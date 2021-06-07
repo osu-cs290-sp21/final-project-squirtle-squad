@@ -12,6 +12,10 @@ a {
   color: red;
 }
 
+#create-pokemon-button {
+  color: red;
+}
+
 .site-title {
   margin: 0;
   font-size: 50px;
@@ -31,7 +35,13 @@ a {
 }
 
 .navlink:hover {
-  background-color: darkgray
+  background-color: darkgray;
+  cursor: pointer;
+}
+
+.custom-pokemon-list {
+  max-height: 350px;
+  overflow-y: auto;
 }
 
 .navitem.create {
@@ -39,13 +49,21 @@ a {
 }
 
 .pokemon-container {
-  margin: 20px 2%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* margin: 20px 2%; */
   color: #ffffffcf;
+  /* width: 90%; */
 }
 
-.pokemon {
-  width: 500px;
+.flexItem {
+  /* width: 500px; */
+  width: 40%;
   background-color: #615959cf;
+  margin-bottom: 5%;
+  padding: 10px;
+  border-radius: 3px;
 }
 
 .pokemon-text {
@@ -53,8 +71,9 @@ a {
 }
 
 .sprite {
-  width: 30%;
-  height: 30%;
+  width: 100%;
+  height: auto;
+
 
     image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
     image-rendering: -moz-crisp-edges;          /* Firefox                        */
@@ -64,4 +83,134 @@ a {
     image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 
+}
+.pokemon-sprite-front-container {
+  display: inline-block;
+  width: 24%;
+  top: 0px;
+  vertical-align: top;
+}
+
+.pokemon-text {
+  display: inline-block;
+  width: 75%;
+}
+
+/* Kinda just stole the modal css from the twits assignment */
+.hidden {
+  display: none;
+}
+
+#modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+#create-pokemon-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1010;
+  overflow: scroll;
+}
+
+.modal-dialog {
+  width: auto;
+  max-width: 600px;
+  min-width: 350px;
+  min-height: 300px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.modal-header {
+  position: relative;
+  padding: 10px 20px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 28px;
+}
+
+#modal-close-button {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.pokemon-input-element {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.pokemon-input-element label {
+  font-weight: 600;
+  flex: 1 75px;
+  margin-right: 10px;
+}
+
+.pokemon-input-element input,
+.pokemon-input-element textarea {
+  flex: 6 200px;
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid #aaa;
+}
+
+.pokemon-input-element textarea {
+  min-height: 64px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 20px 10px;
+}
+
+.modal-footer button {
+  font-size: 20px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.modal-footer #modal-cancel-button:hover {
+  background-color: #eee;
+}
+
+.modal-footer #modal-accept-button {
+  background-color: #319df6;
+  color: #fff;
+}
+
+.modal-footer #modal-accept-button:hover {
+  background-color: #087dde;
+}
+
+.ghost {
+  display: none;
 }

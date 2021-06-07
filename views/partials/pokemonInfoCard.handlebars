@@ -1,10 +1,30 @@
-      <section class="pokemon">
+      <section class="pokemon flexItem">
         <div class="pokemon-sprite-front-container">
-          <img class="sprite pokemon-sprite-front-img" src="/frontSprites/{{pokedex_number}}.png">
+          {{#if front-sprite}}
+            <img class="sprite pokemon-sprite-front-img" src="{{front-sprite}}">
+          {{else}}
+            <img class="sprite pokemon-sprite-front-img" src="/frontSprites/{{pokedex_number}}.png">
+          {{/if}}
         </div>
         <div class="pokemon-text">
+          <p class="ghost">
+              {{name}}
+              {{pokedex_number}}
+              {{hp}}
+              {{attack}}
+              {{defense}}
+              {{sp_attack}}
+              {{sp_defense}}
+              {{speed}}
+              {{weight_kg}}
+              {{japanese_name}}
+              {{generation}}
+          </p>
           <p class="name">
             Name: {{name}}
+          </p>
+          <p class="id">
+            ID: {{pokedex_number}}
           </p>
           <p class="stat hp">
             HP: {{hp}}
@@ -27,7 +47,7 @@
           <p class="other-stats">
             Other stats:
             <ol class="other-stats-list">
-                <li class="first-stat">Weight: {{weight_kg}}kg</li>
+                <li class="first-stat">Weight: {{weight_kg}} kg</li>
                 <li class="second-stat">Japanese Name: {{japanese_name}}</li>
                 <li class="third-stat">Generation: {{generation}}</li>
             </ol>

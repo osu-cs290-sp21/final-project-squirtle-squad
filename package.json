@@ -16,7 +16,7 @@
     "build": "handlebars views/partials/pokemonInfoCard.handlebars -f public/createCardTemplate.js",
     "prestart": "npm run build",
     "start": "node server.js",
-	"dev": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",

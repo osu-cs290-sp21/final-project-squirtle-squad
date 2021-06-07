@@ -1,0 +1,11 @@
+<section class="customPokemonViewer flexItem">
+    <h2>
+        Custom Pokemon
+    </h2>
+
+    <ol start="252" class="custom-pokemon-list">
+        {{#each customPokemon}}
+            <li><a href="/pokemon/{{pokedex_number}}">{{name}}</a></li>
+        {{/each}}
+    </ol>
+</section>

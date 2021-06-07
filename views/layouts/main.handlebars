@@ -7,14 +7,16 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;400&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/pokemonSelect.css" media="screen">
-	<link rel="stylesheet" href="/pokemonArena.css" media="screen">
+	  <link rel="stylesheet" href="/pokemonArena.css" media="screen">
 
     <script src="/index.js" charset="utf-8" defer></script>
+    <script src="createCardTemplate.js" charset"utf-8" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
 
   </head>
 
@@ -26,17 +28,72 @@
 
       <nav class="navbar">
         <ul class="navlist">
-          <li class="navitem navlink battle"><a href="/battle">Battle</a></li>
-          <li class="navitem navlink index"><a href="/">Index</a></li>
+          <a href="/battle"><li class="navitem navlink battle">Battle</li></a>
+          <a href="/"><li class="navitem navlink index">Index</li></a>
           <li class="navitem navbar-search">
             <input type="text" id="navbar-search-input" placeholder="Search for Pokemon">
             <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
           </li>
-          <li class="navitem navlink create"><a href="#">Create a Pokemon</a></li>
+          <li class="navitem navlink create" id="create-pokemon-button">Create a Pokemon</li>
         </ul>
       </nav>
     </header>
 
-    {{{body}}}
+  {{{body}}}
 
+
+  <div id="modal-backdrop" class="hidden"></div>
+  <div id="create-pokemon-modal" class="hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Create a Pokemon</h3>
+        <button type="button" id="modal-close-button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="input-element">
+          <label for="poke-name-input">Pokemon Name</label>
+          <input type="text" id="poke-name-input">
+        </div>
+        <div class="input-element">
+          <label for="poke-type-input">Pokemon Type</label>
+          <select name="type-select" id="poke-type-input">
+            <option value="normal" id="defaultOption">Normal</option>
+            <option value="fire">Fire</option>
+            <option value="water">Water</option>
+            <option value="electric">Electric</option>
+            <option value="grass">Grass</option>
+            <option value="ice">Ice</option>
+            <option value="fighting">Fighting</option>
+            <option value="poison">Poison</option>
+            <option value="ground">Ground</option>
+            <option value="flying">Flying</option>
+            <option value="psychic">Psychic</option>
+            <option value="bug">Bug</option>
+            <option value="rock">Rock</option>
+            <option value="ghost">Ghost</option>
+            <option value="dragon">Dragon</option>
+            <option value="dark">Dark</option>
+            <option value="steel">Steel</option>
+            <option value="fairy">Fairy</option>
+          </select>
+        </div>
+        <div class="input-element">
+          <label for="poke-height-input">Pokemon Height (meters)</label>
+          <input type="text" id="poke-height-input">
+        </div>
+        <div class="input-element">
+          <label for="poke-frontSprite-input">Front Sprite URL</label>
+          <input type="text" id="poke-frontSprite-input">
+        </div>
+        <div class="input-element">
+          <label for="poke-backSprite-input">Back Sprite URL</label>
+          <input type="text" id="poke-backSprite-input">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal-cancel-button">Cancel</button>
+        <button type="button" id="modal-accept-button">Create Pokemon</button>
+      </div>
+    </div>
+  </div>
 </html>

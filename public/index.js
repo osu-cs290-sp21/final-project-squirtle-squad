@@ -107,6 +107,12 @@ function assignEvents() {
 
     var acceptButton = document.getElementById("modal-accept-button");
     acceptButton.addEventListener("click", createPokemon);
+
+    var clickSearchButton = document.getElementById('navbar-search-button')
+    clickSearchButton.addEventListener('click', searchByClicking)
+
+    var liveSearch = document.getElementById('navbar-search-input')
+    liveSearch.addEventListener('input', searchByClicking)
 }
 
 window.onload = assignEvents;
@@ -128,8 +134,4 @@ function searchByClicking() {
   })
 }
 
-var clickSearchButton = document.getElementById('navbar-search-button')
-clickSearchButton.addEventListener('click', searchByClicking)
 
-var liveSearch = document.getElementById('navbar-search-input')
-liveSearch.addEventListener('input', searchByClicking)

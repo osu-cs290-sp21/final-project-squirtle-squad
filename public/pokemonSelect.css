@@ -35,6 +35,11 @@ a {
   cursor: pointer;
 }
 
+.custom-pokemon-list {
+  height: 70%;
+  overflow-y: auto;
+}
+
 .navitem.create {
   float: right;
 }

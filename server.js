@@ -72,7 +72,7 @@ app.post('/pokemon/createPokemon', function (req, res) {
 
 app.get('/', function (req, res) {
     res.status(200).render('pokemonSelect', {
-      data: [...pokemonArray, ...customPokemonArray],
+      data: [pokemonArray[0], {"customPokemon": customPokemonArray}, ...(pokemonArray.slice(1)), ...customPokemonArray],
       displayAll: 1
     })
 });
@@ -82,7 +82,7 @@ app.get('/pokemon/:id', function (req, res, next) {
     if(requestedPokemonID < 252 && requestedPokemonID > 0) {
         var acceptsHTML = req.accepts("html");
         if(acceptsHTML.length > 0) {
-            res.status(200).render('pokemonSelect', pokemonArray[requestedPokemonID-1])
+            res.status(200).render('pokemonSelect', {...pokemonArray[requestedPokemonID-1], "customPokemon": customPokemonArray})
         } else {
             res.contentType("text");
             res.status(200).json(pokemonArray[requestedPokemonID-1]);
@@ -90,7 +90,7 @@ app.get('/pokemon/:id', function (req, res, next) {
     } else if(requestedPokemonID > 0 && requestedPokemonID <= 251 + customPokemonArray.length){
         var acceptsHTML = req.accepts("html");
         if(acceptsHTML.length > 0) {
-            res.status(200).render('pokemonSelect', customPokemonArray[requestedPokemonID-252])
+            res.status(200).render('pokemonSelect', {...customPokemonArray[requestedPokemonID-252], "customPokemon": customPokemonArray})
         } else {
             res.contentType("text");
             res.status(200).json(customPokemonArray[requestedPokemonID-252]);

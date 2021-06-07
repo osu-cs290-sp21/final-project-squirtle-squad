@@ -73,7 +73,7 @@ a {
 .sprite {
   width: 100%;
   height: auto;
-  
+
 
     image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
     image-rendering: -moz-crisp-edges;          /* Firefox                        */
@@ -209,4 +209,8 @@ a {
 
 .modal-footer #modal-accept-button:hover {
   background-color: #087dde;
+}
+
+.ghost {
+  display: none;
 }

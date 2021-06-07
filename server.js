@@ -152,7 +152,8 @@ app.get('/battle', function (req, res, next) {
     userPoke: userPoke,
     oppoPoke: oppoPoke,
     movesU: movesU,
-    movesO: movesO
+    movesO: movesO,
+    scripts: {scriptSource:"/pokemonArena.js"}
   }
 )
 });

@@ -43,6 +43,7 @@ function attack(whichMon, move){
       movePP.textContent = movePP - 1
     }
     var newHealth = Math.round(oppoHealthA - damage)
+    healthbar(0, newHealth, oppoHealthB)
     document.getElementById('opponenthealth').innerHTML = newHealth + "/" + oppoHealthB
   }
   if (whichMon == 1){
@@ -54,6 +55,7 @@ function attack(whichMon, move){
       movePP.textContent = movePP - 1
     }
     var newHealth = Math.round(userHealthA - damage)
+    healthbar(1, newHealth, userHealthB)
     document.getElementById('userhealth').innerHTML = newHealth + "/" + userHealthB
   }
 
@@ -70,4 +72,54 @@ function attack(whichMon, move){
     var rand = Math.floor(Math.random() * 4)
     attack(1,attackButton[rand+4])
   }
+}
+
+function healthbar(whichMon, newHealth, healthB){
+  var fraction = newHealth/healthB
+  console.log(newHealth)
+  fraction = (fraction.toPrecision(1) * 10)
+  if (whichMon == 0){
+    var battlebox = document.getElementById("computer")
+    var healthBar = battlebox.querySelectorAll(".green")
+    for (var i = 0; i < 10; i++){
+      healthBar[i].classList.add("hidden")
+    }
+    for (var i = 0; i < fraction; i++){
+      healthBar[i].classList.remove("hidden")
+    }
+  }
+  else{
+    var battlebox = document.getElementById("player")
+    var healthBar = battlebox.querySelectorAll(".green")
+    for (var i = 0; i < 10; i++){
+      healthBar[i].classList.add("hidden")
+    }
+    for (var i = 0; i < fraction; i++){
+      healthBar[i].classList.remove("hidden")
+    }
+  }
+}
+
+var userMoves = document.getElementsByClassName('move')
+
+userMoves[0].addEventListener('mouseover',  function(){unHiddenMove(0)})
+userMoves[0].addEventListener('mouseout',  function(){unHiddenMove(0)})
+
+userMoves[1].addEventListener('mouseover',  function(){unHiddenMove(1)})
+userMoves[1].addEventListener('mouseout',  function(){unHiddenMove(1)})
+
+userMoves[2].addEventListener('mouseover',  function(){unHiddenMove(2)})
+userMoves[2].addEventListener('mouseout',  function(){unHiddenMove(2)})
+
+userMoves[3].addEventListener('mouseover',  function(){unHiddenMove(3)})
+userMoves[3].addEventListener('mouseout',  function(){unHiddenMove(3)})
+
+function unHiddenMove(index){
+	var moveInfo = []
+	moveInfo.push(userMoves[index].querySelector('.power'))
+	moveInfo.push(userMoves[index].querySelector('.pp'))
+	moveInfo.push(userMoves[index].querySelector('.accuracy'))
+	for(var i = 0; i < 3; i++){
+		moveInfo[i].classList.toggle('hidden')
+	}
 }

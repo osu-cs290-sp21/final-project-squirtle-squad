@@ -15,6 +15,9 @@
 	  <link rel="stylesheet" href="/pokemonArena.css" media="screen">
 
     <script src="/index.js" charset="utf-8" defer></script>
+    {{#with scripts}}
+      <script src="{{scriptSource}}" charset="utf-8" defer></script>
+    {{/with}}
     <script src="createCardTemplate.js" charset"utf-8" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
 

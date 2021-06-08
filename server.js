@@ -125,7 +125,7 @@ app.get('/battle', function (req, res, next) {
   var movesNumO = []
   for(var i = 0; i < 4; i++){
     do {
-      var rand = Math.floor(Math.random() * 98)
+      var rand = Math.floor(Math.random() * 97)
       var numbers = movesNumU.includes(rand)
       if(!numbers){
         movesNumU.push(rand)
@@ -137,7 +137,7 @@ app.get('/battle', function (req, res, next) {
   }
   for(var i = 0; i < 4; i++){
     do {
-      var rand = Math.floor(Math.random() * 98)
+      var rand = Math.floor(Math.random() * 97)
       var numbers = movesNumO.includes(rand)
       if(!numbers){
         movesNumO.push(rand)
@@ -152,7 +152,8 @@ app.get('/battle', function (req, res, next) {
     userPoke: userPoke,
     oppoPoke: oppoPoke,
     movesU: movesU,
-    movesO: movesO
+    movesO: movesO,
+    scripts: {scriptSource:"/pokemonArena.js"}
   }
 )
 });

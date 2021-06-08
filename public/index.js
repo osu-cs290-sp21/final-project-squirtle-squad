@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var pokeStats = document.querySelectorAll(".stat")
 
 var pokeAttackUser = pokeStats[1].textContent
@@ -72,6 +73,8 @@ function attack(whichMon, move){
   }
 }
 
+=======
+>>>>>>> 126f3bd07c0a220efa4026c9bd723e3e9c714310
 var pokemonContainer = document.getElementsByClassName('pokemon-container')
 var savedPokemon = []
 var allPokemon = document.getElementsByClassName('pokemon flexItem')
@@ -138,6 +141,9 @@ function createPokemon() {
         req.addEventListener('load', function (event) {
             console.log("HI")
             if (event.target.status == 200) {
+                if(document.getElementsByClassName('battle-container')) {
+                    return;
+                }
                 var pokeReq = new XMLHttpRequest();
                 pokeReq.open('GET', '/pokemon/last');
                 pokeReq.addEventListener('load', function (eventt) {
@@ -262,6 +268,11 @@ else{
   clickSearchButton.addEventListener('click', searchByClickingBattle)
 }
 
+<<<<<<< HEAD
 console.log("Session Storage: ", sessionStorage.getItem('navbar-search-input'))
 
 console.log("== URL: ", window.location.href)
+=======
+var liveSearch = document.getElementById('navbar-search-input')
+liveSearch.addEventListener('input', searchByClicking)
+>>>>>>> 126f3bd07c0a220efa4026c9bd723e3e9c714310

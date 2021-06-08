@@ -60,8 +60,8 @@ function attack(whichMon, move){
     }
 	
     var newHealth = Math.round(userHealthA - damage)
+	healthbar(1, newHealth, userHealthB)
     document.getElementById('userhealth').innerHTML = newHealth + "/" + userHealthB
-	
 	if(turn){
 		var pokeName = document.getElementById('userPokemon')
 		textEntryUser.textContent = pokeName.textContent + " used " + whichMoveUser.querySelector('.moveName').textContent + "..."
@@ -79,6 +79,7 @@ function attack(whichMon, move){
 		}
 		
 		var newHealth = Math.round(oppoHealthA - damage)
+		healthbar(0, newHealth, oppoHealthB)
 		document.getElementById('opponenthealth').innerHTML = newHealth + "/" + oppoHealthB
 		if(turn){
 			var pokeName = document.getElementById('opponentPokemon')
@@ -93,6 +94,32 @@ function attack(whichMon, move){
     }
     else{
       alert("Your Pokemon has fainted. You Lost! (Restart page to retry)")
+    }
+  }
+}
+
+function healthbar(whichMon, newHealth, healthB){
+  var fraction = newHealth/healthB
+  console.log(newHealth)
+  fraction = (fraction.toPrecision(1) * 10)
+  if (whichMon == 0){
+    var battlebox = document.getElementById("computer")
+    var healthBar = battlebox.querySelectorAll(".green")
+    for (var i = 0; i < 10; i++){
+      healthBar[i].classList.add("hidden")
+    }
+    for (var i = 0; i < fraction; i++){
+      healthBar[i].classList.remove("hidden")
+    }
+  }
+  else{
+    var battlebox = document.getElementById("player")
+    var healthBar = battlebox.querySelectorAll(".green")
+    for (var i = 0; i < 10; i++){
+      healthBar[i].classList.add("hidden")
+    }
+    for (var i = 0; i < fraction; i++){
+      healthBar[i].classList.remove("hidden")
     }
   }
 }

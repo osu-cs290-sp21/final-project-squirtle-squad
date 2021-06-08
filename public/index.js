@@ -114,6 +114,7 @@ function assignEvents() {
 
 window.onload = assignEvents;
 
+
 function searchByClicking() {
   if(allPokemon.length < savedPokemon.length){
     pokemonContainer[0].classList.remove('pokemon', 'flexItem')
@@ -124,16 +125,69 @@ function searchByClicking() {
   var searchQuery = document.getElementById('navbar-search-input')
   document.querySelectorAll(".ghost").forEach(function(searchCard){
     var cards = searchCard.innerText.toLowerCase()
-    console.log("Cards: ", cards)
     var match = cards.includes(searchQuery.value.toLowerCase());
+    if(!match) {
+      searchCard.parentNode.parentNode.remove();
+    }
+    var containerOfPokemon = document.getElementsByClassName('pokemon-container')[0];
+    var custPokeBox = document.getElementsByClassName("customPokemonViewer")[0]
+    if(containerOfPokemon.children[0] == custPokeBox) {
+        if(containerOfPokemon.childElementCount > 1) {
+            containerOfPokemon.insertBefore(containerOfPokemon.children[1], custPokeBox)
+        }
+    }
+  })
+}
+
+function searchByClickingBattle() {
+  if(allPokemon.length < savedPokemon.length){
+    pokemonContainer[0].classList.remove('pokemon', 'flexItem')
+    for(var i=0; i<savedPokemon.length; i++){
+      pokemonContainer[0].appendChild(savedPokemon[i])
+    }
+  }
+  var searchQuery = document.getElementById('navbar-search-input')
+  if(window.location.href != "http://localhost:3000/"){
+      sessionStorage.setItem('navbar-search-input', searchQuery.value.toLowerCase())
+  }
+  if(window.location.href != "http://localhost:3000/"){
+    window.location.href = "http://localhost:3000/"
+  }
+  document.querySelectorAll(".ghost").forEach(function(searchCard){
+    var cards = searchCard.innerText.toLowerCase()
+    var match = cards.includes(sessionStorage.getItem('navbar-search-input'));
     if(!match) {
       searchCard.parentNode.parentNode.remove();
     }
   })
 }
 
-var clickSearchButton = document.getElementById('navbar-search-button')
-clickSearchButton.addEventListener('click', searchByClicking)
+if (window.location.href == "http://localhost:3000/") {
+  if(sessionStorage.getItem('navbar-search-input')) {
+    searchByClickingBattle()
+    document.getElementById('navbar-search-input').value = sessionStorage.getItem('navbar-search-input')
+    sessionStorage.clear()
+  }
 
-var liveSearch = document.getElementById('navbar-search-input')
-liveSearch.addEventListener('input', searchByClicking)
+  var clickSearchButton = document.getElementById('navbar-search-button')
+  clickSearchButton.addEventListener('click', searchByClicking)
+
+  var liveSearch = document.getElementById('navbar-search-input')
+  liveSearch.addEventListener('input', searchByClicking)
+}
+else{
+  var pressEnterButton = document.getElementById('navbar-search-input')
+  pressEnterButton.addEventListener('keyup', function(event) {
+    if(event.keyCode == 13) {
+      event.preventDefault()
+      searchByClickingBattle()
+    }
+  })
+
+  var clickSearchButton = document.getElementById('navbar-search-button')
+  clickSearchButton.addEventListener('click', searchByClickingBattle)
+}
+
+console.log("Session Storage: ", sessionStorage.getItem('navbar-search-input'))
+
+console.log("== URL: ", window.location.href)

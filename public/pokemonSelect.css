@@ -30,6 +30,28 @@ a {
   line-height: 30px;
 }
 
+#navbar-search-input {
+  background-color: #a4a7ab;
+  border: 1px solid #141518cc;
+  border-radius: 2px;
+}
+
+#navbar-search-input:hover {
+  background-color: #f5f5f5;
+}
+
+#navbar-search-button {
+  border: 1px solid #141518cc;
+  border-radius: 50%;
+  padding: 2px;
+  background-color: #a4a7ab;
+}
+
+#navbar-search-button:hover {
+  background-color: #f5f5f5;
+  color: coral;
+}
+
 .navlist {
   margin-top: 0px;
 }
@@ -193,7 +215,7 @@ a {
 }
 
 .input-element:hover {
-  color: blue;
+  color: coral;
 }
 
 .modal-footer {

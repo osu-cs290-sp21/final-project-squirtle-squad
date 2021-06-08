@@ -160,7 +160,7 @@ h3, p, div {
 }
 
 #explain-text {
-	color: white;
+	color: black;
 	padding-left: 150px;
 }
 
@@ -211,4 +211,17 @@ h3, p, div {
 	right: 20px;
 	bottom: 25px;
 	color: blue;
+}
+
+.resbutton {
+	border: 2px solid Black;
+	width: 18%;
+	height: 33%;
+	padding-top: 5px;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	border-radius: 50px;
+	background: darkgrey;
+	margin-top: 20px;
 }

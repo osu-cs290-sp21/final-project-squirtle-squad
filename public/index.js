@@ -62,9 +62,8 @@ function createPokemon() {
         var reqBody = JSON.stringify(customPokemonShort);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function (event) {
-            console.log("HI")
             if (event.target.status == 200) {
-                if(document.getElementsByClassName('battle-container')) {
+                if(document.getElementsByClassName('battle-container')[0]) {
                     return;
                 }
                 var pokeReq = new XMLHttpRequest();

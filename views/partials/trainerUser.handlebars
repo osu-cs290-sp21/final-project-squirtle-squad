@@ -2,7 +2,7 @@
 <div class="trainer" id="player">
   <img src="/backSprites/{{pokedex_number}}.png" class="sprites" id="testing">
   <div class="battle-box">
-    <h3>
+    <h3 id="userPokemon">
       {{name}}
     </h3>
     <div class="health-bar">
@@ -40,8 +40,24 @@
     <div class="health" id="userhealth">
       {{hp}}/{{hp}}
     </div>
-
+	
   </div>
+	<div class="text-box hidden" id="user">
+			<p class="text-entry">
+				
+			</p>
+			<div class="click">
+				<i class="far fa-hand-pointer"></i>
+			</div>
+	</div>
+	<div class="hidden text-box" id="oppo">
+			<p class="text-entry">
+				
+			</p>
+			<div class="click">
+				<i class="far fa-hand-pointer"></i>
+			<div>
+	</div>
 </div>
 
 </main>

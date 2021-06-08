@@ -187,3 +187,28 @@ h3, p, div {
 .hidden {
 	display: none;
 }
+
+.text-box {
+	position: absolute;
+	top: 550px;
+	height: 15%;
+	width: 98%;
+	background: white;
+	border: 3px solid black;
+	border-radius: 5px;
+	z-index: 10;
+}
+
+.text-entry {
+	margin-left: 15px;
+	font-size: 20px;
+}
+
+.click {
+	font-size: 40px;
+	float: right;
+	position: relative;
+	right: 20px;
+	bottom: 25px;
+	color: blue;
+}

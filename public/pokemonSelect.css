@@ -1,5 +1,5 @@
 body {
-  background-color: #000000cf;
+  background-color: #c5e2ee;
   font-family: 'Source Serif Pro', serif;
   margin: 0;
 }
@@ -9,7 +9,7 @@ a {
 }
 
 a {
-  color: red;
+  color: coral;
 }
 
 #create-pokemon-button {
@@ -19,7 +19,7 @@ a {
 .site-title {
   margin: 0;
   font-size: 50px;
-  font-weight: 400;
+  font-weight: 600;
   color: #3b4cca;
 }
 
@@ -53,17 +53,18 @@ a {
   flex-wrap: wrap;
   justify-content: space-around;
   /* margin: 20px 2%; */
-  color: #ffffffcf;
+  color: black;
   /* width: 90%; */
 }
 
 .flexItem {
   /* width: 500px; */
-  width: 40%;
-  background-color: #615959cf;
-  margin-bottom: 5%;
+  width: 42%;
+  background-color: white;
+  margin-bottom: 2%;
   padding: 10px;
   border-radius: 3px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.20)
 }
 
 /* .customPokemonViewer {
@@ -71,7 +72,7 @@ a {
 } */
 
 .pokemon-text {
-  color: #e9866f;
+  color: black;
 }
 
 .sprite {
@@ -185,6 +186,10 @@ a {
   min-height: 64px;
 }
 
+.input-element:hover {
+  color: blue;
+}
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -207,12 +212,12 @@ a {
 }
 
 .modal-footer #modal-accept-button {
-  background-color: #319df6;
-  color: #fff;
+  background-color: coral;
+  color: white;
 }
 
 .modal-footer #modal-accept-button:hover {
-  background-color: #087dde;
+  background-color: #ce6f65;
 }
 
 .ghost {

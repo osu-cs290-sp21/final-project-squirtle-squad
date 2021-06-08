@@ -66,6 +66,10 @@ a {
   border-radius: 3px;
 }
 
+/* .customPokemonViewer {
+  position: relative;
+} */
+
 .pokemon-text {
   color: #e9866f;
 }

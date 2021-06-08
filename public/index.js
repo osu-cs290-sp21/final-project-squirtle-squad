@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var pokeStats = document.querySelectorAll(".stat")
 
 var pokeAttackUser = pokeStats[1].textContent
@@ -14,10 +14,12 @@ var pokeDefenseOppo = pokeStats[8].textContent
 var oppoDefense = pokeDefenseOppo.replace('DEF:', '')
 
 var attackButton = document.querySelectorAll('.move')
-//attackButton[0].addEventListener('click', function(){attack(0, attackButton[0])})
-// attackButton[1].addEventListener('click', function(){attack(0, attackButton[1])})
-// attackButton[2].addEventListener('click', function(){attack(0, attackButton[2])})
-// attackButton[3].addEventListener('click', function(){attack(0, attackButton[3])})
+if(window.location.href == "http://localhost:3000/battle"){
+  attackButton[0].addEventListener('click', function(){attack(0, attackButton[0])})
+  attackButton[1].addEventListener('click', function(){attack(0, attackButton[1])})
+  attackButton[2].addEventListener('click', function(){attack(0, attackButton[2])})
+  attackButton[3].addEventListener('click', function(){attack(0, attackButton[3])})
+}
 
 function attack(whichMon, move){
   var damage = 0
@@ -73,8 +75,7 @@ function attack(whichMon, move){
   }
 }
 
-=======
->>>>>>> 126f3bd07c0a220efa4026c9bd723e3e9c714310
+
 var pokemonContainer = document.getElementsByClassName('pokemon-container')
 var savedPokemon = []
 var allPokemon = document.getElementsByClassName('pokemon flexItem')
@@ -246,6 +247,7 @@ function searchByClickingBattle() {
 if (window.location.href == "http://localhost:3000/") {
   if(sessionStorage.getItem('navbar-search-input')) {
     searchByClickingBattle()
+    document.getElementById('navbar-search-input').value = sessionStorage.getItem('navbar-search-input')
     sessionStorage.clear()
   }
 
@@ -268,11 +270,6 @@ else{
   clickSearchButton.addEventListener('click', searchByClickingBattle)
 }
 
-<<<<<<< HEAD
 console.log("Session Storage: ", sessionStorage.getItem('navbar-search-input'))
 
 console.log("== URL: ", window.location.href)
-=======
-var liveSearch = document.getElementById('navbar-search-input')
-liveSearch.addEventListener('input', searchByClicking)
->>>>>>> 126f3bd07c0a220efa4026c9bd723e3e9c714310

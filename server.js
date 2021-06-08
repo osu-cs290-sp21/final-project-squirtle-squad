@@ -74,7 +74,7 @@ app.post('/pokemon/createPokemon', function (req, res) {
 
 app.get('/', function (req, res) {
     res.status(200).render('pokemonSelect', {
-      data: [pokemonArray[0], {"customPokemon": customPokemonArray}, ...(pokemonArray.slice(1)), ...customPokemonArray],
+      data: [{"customPokemon": customPokemonArray}, pokemonArray[0], ...(pokemonArray.slice(1)), ...customPokemonArray],
       displayAll: 1
     })
 });

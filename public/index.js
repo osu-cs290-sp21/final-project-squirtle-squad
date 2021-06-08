@@ -139,32 +139,19 @@ function searchByClicking() {
 }
 
 function searchByClickingBattle() {
-  if(allPokemon.length < savedPokemon.length){
-    pokemonContainer[0].classList.remove('pokemon', 'flexItem')
-    for(var i=0; i<savedPokemon.length; i++){
-      pokemonContainer[0].appendChild(savedPokemon[i])
-    }
-  }
   var searchQuery = document.getElementById('navbar-search-input')
   if(window.location.href != "http://localhost:3000/"){
       sessionStorage.setItem('navbar-search-input', searchQuery.value.toLowerCase())
+      window.location.href = "http://localhost:3000/"
   }
-  if(window.location.href != "http://localhost:3000/"){
-    window.location.href = "http://localhost:3000/"
-  }
-  document.querySelectorAll(".ghost").forEach(function(searchCard){
-    var cards = searchCard.innerText.toLowerCase()
-    var match = cards.includes(sessionStorage.getItem('navbar-search-input'));
-    if(!match) {
-      searchCard.parentNode.parentNode.remove();
-    }
-  })
 }
 
 if (window.location.href == "http://localhost:3000/") {
+  document.getElementsByClassName("topOfPage")[0].style.position = "sticky"
+  document.getElementsByClassName("topOfPage")[0].style.top = "0px"
   if(sessionStorage.getItem('navbar-search-input')) {
-    searchByClickingBattle()
     document.getElementById('navbar-search-input').value = sessionStorage.getItem('navbar-search-input')
+    searchByClicking()
     sessionStorage.clear()
   }
 

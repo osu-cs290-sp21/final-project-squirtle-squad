@@ -7,7 +7,8 @@ var pokeDefenseUser = pokeStats[2].textContent
 var userDefense = pokeDefenseUser.replace('DEF:', '')
 
 var pokeSpeedUser = pokeStats[5].textContent
-var userSpeed = pokeSpeedUser.replace('SPD:', '')
+var userSpeed = pokeSpeedUser.replace('SPD: ', '')
+
 
 var pokeAttackOppo = pokeStats[7].textContent
 var oppoAttack = pokeAttackOppo.replace('ATK:', '')
@@ -16,12 +17,17 @@ var pokeDefenseOppo = pokeStats[8].textContent
 var oppoDefense = pokeDefenseOppo.replace('DEF:', '')
 
 var pokeSpeedOppo = pokeStats[11].textContent
-var oppoSpeed = pokeSpeedOppo.replace('SPD:', '')
+var oppoSpeed = pokeSpeedOppo.replace('SPD: ', '')
+
+console.log(userSpeed.length)
+console.log(oppoSpeed.length)
 
 var textBoxUser = document.getElementById('user')
 var textBoxOppo = document.getElementById('oppo')
 var textEntryUser = textBoxUser.querySelector('.text-entry')
 var textEntryOppo = textBoxOppo.querySelector('.text-entry')
+
+var resetButton = document.getElementById('reset-button')
 
 var attackButton = document.querySelectorAll('.move')
 attackButton[0].addEventListener('click', function(){textOutput(attackButton[0])})
@@ -29,9 +35,12 @@ attackButton[1].addEventListener('click', function(){textOutput(attackButton[1])
 attackButton[2].addEventListener('click', function(){textOutput(attackButton[2])})
 attackButton[3].addEventListener('click', function(){textOutput(attackButton[3])})
 
+var endBattle = 1;
 var whichMoveUser
 var whichMoveOppo
 var turn
+var userHit
+var oppoHit
 
 function attack(whichMon, move){
   var damage = 0
@@ -42,8 +51,6 @@ function attack(whichMon, move){
   var pokeHealthUser = document.getElementById('userhealth').textContent
   var userHealthA = pokeHealthUser.split('/')[0]
   var userHealthB = pokeHealthUser.split('/')[1]
-  var moveAccuracyU = move.querySelector(".accuracy")
-  var moveAccuracy = moveAccuracyU.textContent.replace('Accuracy:', '')
   var movePowerU = move.querySelector(".power")
   var movePower = movePowerU.textContent.replace('Power:', '')
   var movePPU = move.querySelector(".pp")
@@ -51,7 +58,7 @@ function attack(whichMon, move){
 
   
   if (whichMon == 1){
-    if ((moveAccuracy * 100) >= Math.floor(Math.random() *100)){
+    if (oppoHit){
       if(Math.floor(Math.random()*24) == 1){
         critical = 1.5
       }
@@ -59,48 +66,83 @@ function attack(whichMon, move){
       movePP.textContent = movePP - 1
     }
 	
+	
     var newHealth = Math.round(userHealthA - damage)
 	healthbar(1, newHealth, userHealthB)
     document.getElementById('userhealth').innerHTML = newHealth + "/" + userHealthB
 	if(turn){
 		var pokeName = document.getElementById('userPokemon')
-		textEntryUser.textContent = pokeName.textContent + " used " + whichMoveUser.querySelector('.moveName').textContent + "..."
+		var moveAccuracyUser = whichMoveUser.querySelector(".accuracy")
+	var moveAccuracyU = moveAccuracyUser.textContent.replace('Accuracy:', '')
+		if((moveAccuracyU * 100) >= Math.floor(Math.random() *100)){
+				textEntryUser.textContent = pokeName.textContent + " used " + whichMoveUser.querySelector('.moveName').textContent + "..."
+				userHit = 1
+			}
+		else{
+				textEntryUser.textContent = pokeName.textContent + " used " + whichMoveUser.querySelector('.moveName').textContent + ", It missed..." 
+				userHit = 0
+			}
 		textBoxUser.classList.remove('hidden')
 		turn = false
 	}
   }
 	if (whichMon == 0){
-		if ((moveAccuracy * 100) >= Math.floor(Math.random() *100)){
+		if (userHit){
 		  if(Math.floor(Math.random()*24) == 1){
 			critical = 1.5
 		  }
 		  damage = ((((userAttack * movePower)/oppoDefense)/50)+2) * critical * 5
 		  movePP.textContent = movePP - 1
 		}
+		else{
+			console.log("attack missed")
+			setTimeout(function(){
+			}, 3000)
+			var pokeName = document.getElementById('userPokemon')
+				textEntryUser.textContent = ""
+				textEntryUser.textContent = pokeName.textContent + "'s attack missed!"
+		}
 		
 		var newHealth = Math.round(oppoHealthA - damage)
 		healthbar(0, newHealth, oppoHealthB)
 		document.getElementById('opponenthealth').innerHTML = newHealth + "/" + oppoHealthB
 		if(turn){
+			var moveAccuracyOppo = whichMoveOppo.querySelector(".accuracy")
+			var moveAccuracyO = moveAccuracyOppo.textContent.replace('Accuracy:', '')
 			var pokeName = document.getElementById('opponentPokemon')
+			if((moveAccuracyO * 100) >= Math.floor(Math.random() *100)){
 			textEntryOppo.textContent = pokeName.textContent + " used " + whichMoveOppo.querySelector('.moveName').textContent + "..."
+			oppoHit = 1
+			}
+			else{
+			textEntryOppo.textContent = pokeName.textContent + " used " + whichMoveOppo.querySelector('.moveName').textContent + ", It missed..."
+			oppoHit = 0
+			}
 			textBoxOppo.classList.remove('hidden')
 			turn = false
 		}
 	  }
   if (0 >= newHealth ){
+	  
+	  resetButton.classList.toggle('hidden')
+	  newHealth = 0;
     if (whichMon == 0){
-      alert("Your Opponent's Pokemon has fainted. You Win! (Restart page to retry)")
+		endBattle = 0;
+		textBoxOppo.classList.add('hidden')
+		document.getElementById('opponenthealth').innerHTML = newHealth + "/" + oppoHealthB
+      alert("Your Opponent's Pokemon has fainted. You Win! (Press the reset button Below to play again with the same pokemon!)")
     }
     else{
-      alert("Your Pokemon has fainted. You Lost! (Restart page to retry)")
+		endBattle = 0;
+		textBoxUser.classList.add('hidden')
+		document.getElementById('userhealth').innerHTML = newHealth + "/" + userHealthB
+      alert("Your Pokemon has fainted. You Lost! (Press the reset button Below to play again with the same pokemon!)")
     }
   }
 }
 
 function healthbar(whichMon, newHealth, healthB){
   var fraction = newHealth/healthB
-  console.log(newHealth)
   fraction = (fraction.toPrecision(1) * 10)
   if (whichMon == 0){
     var battlebox = document.getElementById("computer")
@@ -150,30 +192,75 @@ function unHiddenMove(index){
 
 
 function textOutput(userMove) {
+	var moveAccuracyUser = userMove.querySelector(".accuracy")
+	var moveAccuracyU = moveAccuracyUser.textContent.replace('Accuracy:', '')
 	turn = true
 	var rand = Math.floor(Math.random() * 4)
 	var oppoMove = attackButton[rand+4]
+	var moveAccuracyOppo = oppoMove.querySelector(".accuracy")
+	var moveAccuracyO = moveAccuracyOppo.textContent.replace('Accuracy:', '')
 	whichMoveUser = userMove
 	whichMoveOppo = oppoMove
 	if(userSpeed > oppoSpeed){
-		var pokeName = document.getElementById('userPokemon')
-		textEntryUser.textContent = pokeName.textContent + " used " + userMove.querySelector('.moveName').textContent + "..."
-		textBoxUser.classList.remove('hidden')
+		if(endBattle){
+			
+			var pokeName = document.getElementById('userPokemon')
+			
+			if((moveAccuracyU * 100) >= Math.floor(Math.random() *100)){
+				textEntryUser.textContent = pokeName.textContent + " used " + userMove.querySelector('.moveName').textContent + "..."
+				userHit = 1
+			}
+			else{
+				textEntryUser.textContent = pokeName.textContent + " used " + userMove.querySelector('.moveName').textContent + ", It missed..." 
+				userHit = 0
+			}
+			textBoxUser.classList.remove('hidden')
+		}
 	}
 	else{
+		if(endBattle){
 		var pokeName = document.getElementById('opponentPokemon')
-		textEntryOppo.textContent = pokeName.textContent + " used " + oppoMove.querySelector('.moveName').textContent + "..."
+		
+		if((moveAccuracyO * 100) >= Math.floor(Math.random() *100)){
+			textEntryOppo.textContent = pokeName.textContent + " used " + oppoMove.querySelector('.moveName').textContent + "..."
+			oppoHit = 1
+		}
+		else{
+			textEntryOppo.textContent = pokeName.textContent + " used " + oppoMove.querySelector('.moveName').textContent + ", It missed..."
+			oppoHit = 0
+		}
 		textBoxOppo.classList.remove('hidden')
+		}
 	}
 }
 
 textBoxUser.addEventListener('click', function(){
-	textBoxUser.classList.add('hidden')
-	attack(0, whichMoveUser)
+		
+		textBoxUser.classList.add('hidden')
+		attack(0, whichMoveUser)
+	
 })
 
 textBoxOppo.addEventListener('click', function(){
-	textBoxOppo.classList.add('hidden')
-	attack(1, whichMoveOppo)
 	
+		textBoxOppo.classList.add('hidden')
+		attack(1, whichMoveOppo)
+	
+})
+
+resetButton.addEventListener('click', function(){
+	var pokeHealthOppo = document.getElementById('opponenthealth').textContent
+	var oppoHealthA = pokeHealthOppo.split('/')[0]
+	var oppoHealthB = pokeHealthOppo.split('/')[1]
+	var pokeHealthUser = document.getElementById('userhealth').textContent
+	var userHealthA = pokeHealthUser.split('/')[0]
+	var userHealthB = pokeHealthUser.split('/')[1]
+	oppoHealthA = oppoHealthB
+	userHealthA = userHealthB
+	document.getElementById('opponenthealth').innerHTML = oppoHealthA + "/" + oppoHealthB
+	document.getElementById('userhealth').innerHTML = userHealthA + "/" + userHealthB
+	endBattle = 1;
+	healthbar(0, userHealthA, userHealthB)
+	healthbar(1, oppoHealthA, oppoHealthB)
+	resetButton.classList.toggle('hidden')
 })

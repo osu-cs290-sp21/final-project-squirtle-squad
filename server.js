@@ -108,17 +108,19 @@ app.get('/pokemon/:id', function (req, res, next) {
 });
 
 app.get('/battle', function (req, res, next) {
-  var userVal = Math.floor(Math.random() * 252)
-  var oppoVal = Math.floor(Math.random() * 252)
+  var userVal = Math.floor(Math.random() * 250)
+  var oppoVal = Math.floor(Math.random() * 250)
 
   var userPoke = pokemonArray[userVal]
   userPoke.hp = ((userPoke.hp * 2 + 8) * 50 / 100 + 50 + 10)
   userPoke.attack = ((userPoke.attack * 2 + 8) * 50 / 100 + 5)
   userPoke.defense = ((userPoke.defense * 2 + 8) * 50 / 100 + 5)
+  userPoke.speed = ((userPoke.speed * 2 + 8) * 50 / 100 + 5)
   var oppoPoke = pokemonArray[oppoVal]
   oppoPoke.hp = ((oppoPoke.hp * 2 + 8) * 50 / 100 + 50 + 10)
   oppoPoke.attack = ((oppoPoke.attack * 2 + 8) * 50 / 100 + 5)
   oppoPoke.defense = ((oppoPoke.defense * 2 + 8) * 50 / 100 + 5)
+  oppoPoke.speed = ((oppoPoke.speed * 2 + 8) * 50 / 100 + 5)
   var movesU = []
   var movesNumU = []
   var movesO = []
@@ -156,6 +158,7 @@ app.get('/battle', function (req, res, next) {
     scripts: {scriptSource:"/pokemonArena.js"}
   }
 )
+
 });
 
 app.get('*', function (req, res, next) {

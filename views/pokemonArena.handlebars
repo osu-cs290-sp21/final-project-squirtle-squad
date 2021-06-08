@@ -4,27 +4,8 @@
 			{{>trainerOppo}}
 
 			{{>trainerUser}}
-
-		<div id="pokeswap">
-				<div class="party">
-					Arceus
-				</div>
-				<div class="party">
-					Sceptile
-				</div>
-				<div class="party">
-					Charizard
-				</div>
-				<div class="party">
-					Miltank
-				</div>
-				<div class="party">
-					Chancy
-				</div>
-				<div class="party">
-					Rayquaza
-				</div>
-		</div>
+		
+		
 		</div>
 		<div>
 			<div id="moveset">
@@ -51,7 +32,13 @@
 					Change your pokemon from the list on the right.
 				</li>
 			</ul>
+			<div class="hidden" Id="reset-button">
+			<div class="resbutton">
+				Reset Battle
+			</div>
+			</div>
 		</div>
+		
 		<div class="pokemon-container">
 			{{#with userPoke}}
 				{{> pokemonInfoCard}}

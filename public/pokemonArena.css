@@ -134,6 +134,7 @@ h3, p, div {
 	flex-direction: column;
 	padding-left: 10px;
 	justify-content: flex-start;
+	cursor:pointer;
 }
 
 
@@ -204,6 +205,10 @@ h3, p, div {
 	border: 3px solid black;
 	border-radius: 5px;
 	z-index: 10;
+}
+
+.text-box:hover {
+	cursor:pointer;
 }
 
 .text-entry {

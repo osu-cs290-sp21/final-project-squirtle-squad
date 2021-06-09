@@ -240,6 +240,7 @@ h3, p, div {
 
 .resbutton:hover {
 	box-shadow: 5px 5px;
+  cursor:pointer;
 }
 
 #reset-button {

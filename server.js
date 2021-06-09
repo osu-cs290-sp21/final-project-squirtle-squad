@@ -115,11 +115,15 @@ app.get('/battle', function (req, res, next) {
   userPoke.hp = ((userPoke.hp * 2 + 8) * 50 / 100 + 50 + 10)
   userPoke.attack = ((userPoke.attack * 2 + 8) * 50 / 100 + 5)
   userPoke.defense = ((userPoke.defense * 2 + 8) * 50 / 100 + 5)
+  userPoke.sp_attack = ((userPoke.sp_attack * 2 + 8) * 50 / 100 + 5)
+  userPoke.sp_defense = ((userPoke.sp_defense * 2 + 8) * 50 / 100 + 5)
   userPoke.speed = ((userPoke.speed * 2 + 8) * 50 / 100 + 5)
   var oppoPoke = pokemonArray[oppoVal]
   oppoPoke.hp = ((oppoPoke.hp * 2 + 8) * 50 / 100 + 50 + 10)
   oppoPoke.attack = ((oppoPoke.attack * 2 + 8) * 50 / 100 + 5)
   oppoPoke.defense = ((oppoPoke.defense * 2 + 8) * 50 / 100 + 5)
+  oppoPoke.sp_attack = ((oppoPoke.sp_attack * 2 + 8) * 50 / 100 + 5)
+  oppoPoke.sp_defense = ((oppoPoke.sp_defense * 2 + 8) * 50 / 100 + 5)
   oppoPoke.speed = ((oppoPoke.speed * 2 + 8) * 50 / 100 + 5)
   var movesU = []
   var movesNumU = []
